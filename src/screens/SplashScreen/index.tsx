@@ -1,7 +1,8 @@
 import React from 'react';
 
+import SplashLogo from '~/assets/img/SevenHousesLogo.png';
+
 import { SectionView, SectionImage } from './styles';
-import SplashLogo from '../../assets/img/SevenHousesLogo.png';
 
 export const SplashScreen = (): JSX.Element => {
   return (
