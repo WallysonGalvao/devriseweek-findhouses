@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import { SplashScreen } from './screens';
 
-import { theme } from './styles/themes';
+import { theme } from './styles/theme';
 
 const App = (): JSX.Element => (
   <ThemeProvider theme={theme}>
