@@ -11,6 +11,9 @@
     "lint:fix": "yarn lint --fix",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+  },
   "dependencies": {
     "react": "17.0.1",
     "react-native": "0.64.0",
