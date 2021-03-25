@@ -6,13 +6,11 @@ import { SplashScreen } from './screens';
 
 import { theme } from './styles/theme';
 
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <StatusBar translucent backgroundColor="transparent" />
-      <SplashScreen />
-    </ThemeProvider>
-  );
-};
+const App = (): JSX.Element => (
+  <ThemeProvider theme={theme}>
+    <StatusBar translucent backgroundColor="transparent" />
+    <SplashScreen />
+  </ThemeProvider>
+);
 
 export default App;
