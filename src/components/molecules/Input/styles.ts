@@ -15,6 +15,7 @@ export const InputText = styled.TextInput`
     border-radius: ${theme.metrics.px(12)}px;
     background-color: ${theme.colors.backgroundLight};
     margin-top: ${theme.metrics.px(12)}px;
+    font-family: ${theme.fonts.montserrat.regular};
     font-size: ${theme.metrics.px(16)}px;
     color: ${theme.colors.white};
     padding-left: ${theme.metrics.px(12)}px;
