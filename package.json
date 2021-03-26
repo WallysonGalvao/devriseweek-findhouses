@@ -9,11 +9,14 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-vector-icons": "^8.1.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
@@ -21,14 +24,23 @@
     "@babel/eslint-parser": "^7.13.10",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/react-native": "^5.3.25",
+    "@storybook/react-native-server": "^5.3.23",
     "@types/jest": "^26.0.20",
     "@types/react-native": "^0.64.0",
+    "@types/react-native-vector-icons": "^6.4.6",
     "@types/react-test-renderer": "^16.9.2",
     "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
     "babel-plugin-root-import": "^6.6.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -44,6 +56,7 @@
     "lint-staged": ">=10",
     "metro-react-native-babel-preset": "^0.64.0",
     "prettier": "^2.2.1",
+    "react-dom": "17.0.1",
     "react-test-renderer": "17.0.1",
     "typescript": "^3.8.3"
   },
