@@ -6,11 +6,13 @@ import { PropertiesProps } from '~/services/calls';
 import { HouseListContainer } from './styles';
 
 type HousesListProps = {
+  loading: boolean;
   data: PropertiesProps[];
   children: React.ReactElement;
 };
 
 export const HousesList = ({
+  loading,
   data,
   children,
 }: HousesListProps): JSX.Element => {

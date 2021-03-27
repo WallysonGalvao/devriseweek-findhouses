@@ -12,7 +12,7 @@ Ionicons.loadFont();
 
 const App = (): JSX.Element => (
   <ThemeProvider theme={theme}>
-    <StatusBar translucent backgroundColor="transparent" />
+    <StatusBar translucent backgroundColor={theme.colors.backgroundDark} />
     <HomeScreen />
   </ThemeProvider>
 );
