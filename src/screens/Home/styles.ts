@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components/native';
 
-export const ScreenContainer = styled.View`
+export const ScreenScroll = styled.ScrollView``;
+
+export const ScreenContainer = styled.SafeAreaView`
   ${({ theme }) => css`
     width: 100%;
     height: 100%;
@@ -9,8 +11,18 @@ export const ScreenContainer = styled.View`
     align-items: flex-start;
     justify-content: flex-start;
     background-color: ${theme.colors.backgroundDark};
+    padding-top: ${theme.metrics.px(24)}px;
+  `}
+`;
+
+export const ContentContainer = styled.View`
+  ${({ theme }) => css`
+    width: ${theme.metrics.wp(100)}px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: ${theme.metrics.px(24)}px;
-    padding-top: ${theme.metrics.px(50)}px;
   `}
 `;
 
@@ -19,12 +31,28 @@ export const TopContainer = styled.View`
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: ${theme.metrics.px(48)}px;
+    margin-bottom: ${theme.metrics.px(20)}px;
   `}
 `;
 
 export const TitleContainer = styled.View`
-  width: 60%;
+  width: 65%;
+`;
+
+export const LoaderContainer = styled.View`
+  ${({ theme }) => css`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: ${theme.metrics.px(48)}px;
+  `}
+`;
+
+export const Loader = styled.ActivityIndicator`
+  ${({ theme }) => css`
+    margin-bottom: ${theme.metrics.px(12)}px;
+  `}
 `;

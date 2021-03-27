@@ -1,8 +1,8 @@
 import React from 'react';
+import styled, { css } from 'styled-components/native';
 import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 
-import styled, { css } from 'styled-components/native';
 import {
   Title,
   InputLabel,
@@ -16,7 +16,7 @@ import {
   CardHightLightText,
 } from '.';
 
-export const Wrapper = styled.View`
+const Wrapper = styled.View`
   ${({ theme }) => css`
     flex: 1;
     align-items: center;
