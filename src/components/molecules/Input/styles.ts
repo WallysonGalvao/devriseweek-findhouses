@@ -1,11 +1,25 @@
 import styled, { css } from 'styled-components/native';
 
-export const InputContainer = styled.View`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+type InputContainerProps = {
+  mt?: number;
+  mb?: number;
+  ml?: number;
+  mr?: number;
+};
+
+export const InputContainer = styled.View<InputContainerProps>`
+  ${({ theme, mt, mb, ml, mr }) => css`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    margin-top: ${theme.metrics.px(mt || 0)}px;
+    margin-bottom: ${theme.metrics.px(mb || 0)}px;
+    margin-left: ${theme.metrics.px(ml || 0)}px;
+    margin-right: ${theme.metrics.px(mr || 0)}px;
+  `}
 `;
 
 export const InputText = styled.TextInput`

@@ -7,16 +7,18 @@ export type IconButtonProps = {
   onPress?: () => void;
   transparent?: boolean;
   iconName: string;
+  fill?: boolean;
 };
 
 export const IconButton = ({
   onPress,
   transparent = false,
   iconName,
+  fill = false,
 }: IconButtonProps): JSX.Element => {
   return (
     <IconButtonContainer transparent={transparent} onPress={onPress}>
-      <Icon name={iconName} color="white" size={20} />
+      <Icon name={iconName} color={fill ? 'yellow' : 'white'} size={20} />
     </IconButtonContainer>
   );
 };

@@ -24,10 +24,18 @@ export const Title = styled(BaseText)`
   `}
 `;
 
-export const InputLabel = styled(BaseText)`
+export const InputSectionLabel = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(16)}px;
+    font-family: ${theme.fonts.montserrat.semibold};
+  `}
+`;
+
+export const InputLabel = styled(BaseText)`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    font-size: ${theme.metrics.px(14)}px;
     font-family: ${theme.fonts.montserrat.semibold};
   `}
 `;

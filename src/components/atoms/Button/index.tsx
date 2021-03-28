@@ -5,11 +5,17 @@ import { ButtonContainer } from './styles';
 
 type ButtonProps = {
   text: string;
+  mt: number;
+  onPress: () => void;
 };
 
-export const Button = ({ text }: ButtonProps): JSX.Element => {
+export const Button = ({
+  text,
+  onPress,
+  ...props
+}: ButtonProps): JSX.Element => {
   return (
-    <ButtonContainer>
+    <ButtonContainer onPress={onPress} {...props}>
       <ButtonText>{text}</ButtonText>
     </ButtonContainer>
   );

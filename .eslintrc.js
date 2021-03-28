@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'import/no-unresolved': 'off',
     'no-use-before-define': 'off',

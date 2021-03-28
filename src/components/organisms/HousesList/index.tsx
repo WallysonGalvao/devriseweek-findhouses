@@ -6,13 +6,17 @@ import { PropertiesProps } from '~/services/calls';
 import { HouseListContainer } from './styles';
 
 type HousesListProps = {
+  loading: boolean;
   data: PropertiesProps[];
   children?: React.ReactElement;
+  onEndReached: () => Promise<void>;
 };
 
 export const HousesList = ({
+  loading,
   data,
   children,
+  onEndReached,
 }: HousesListProps): JSX.Element => {
   const keyExtractor = (item: PropertiesProps) => {
     return item.property_id;
@@ -36,6 +40,8 @@ export const HousesList = ({
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       ListHeaderComponent={children}
+      refreshing={loading}
+      onEndReached={onEndReached}
     />
   );
 };

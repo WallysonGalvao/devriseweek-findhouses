@@ -1,8 +1,14 @@
 import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { Alert } from 'react-native';
 import { useHousesStore } from '~/services/stores';
 import { getHouseDetail, PropertiesProps } from '~/services/calls';
+import {
+  getIfHouseIsFavorite,
+  saveHouseAsFavorite,
+  removeHouseAsFavorite,
+} from '~/services/db';
 
 import {
   DetailSectionTitle,
@@ -26,6 +32,7 @@ export const DetailScreen = (): JSX.Element => {
   const { selectedHouse } = useHousesStore();
 
   const [loading, setLoading] = useState(true);
+  const [favorite, setFavorite] = useState(false);
   const [houseDetail, setHouseDetail] = useState<PropertiesProps>(
     {} as PropertiesProps,
   );
@@ -41,6 +48,23 @@ export const DetailScreen = (): JSX.Element => {
 
   const onClickArrowBack = useCallback(() => goBack(), []);
 
+  const checkIfHouseIsFavorite = useCallback(async () => {
+    const isFavorite = await getIfHouseIsFavorite(selectedHouse.property_id);
+    setFavorite(isFavorite);
+  }, []);
+
+  const saveFavoriteHouse = useCallback(async () => {
+    if (favorite) {
+      await removeHouseAsFavorite(selectedHouse.property_id);
+      setFavorite(false);
+      Alert.alert('Removido!', 'Imóvel removido como favorito com sucesso.');
+    } else {
+      await saveHouseAsFavorite(selectedHouse.property_id);
+      setFavorite(true);
+      Alert.alert('Salvo!', 'Imóvel salvo como favorito com sucesso.');
+    }
+  }, [favorite]);
+
   const callGetHouseDetail = useCallback(async () => {
     const result = await getHouseDetail(selectedHouse.property_id);
     setHouseDetail(result.properties[0]);
@@ -49,6 +73,7 @@ export const DetailScreen = (): JSX.Element => {
 
   useEffect(() => {
     callGetHouseDetail();
+    checkIfHouseIsFavorite();
   }, []);
 
   return (
@@ -60,8 +85,9 @@ export const DetailScreen = (): JSX.Element => {
           transparent
         />
         <IconButton
-          onPress={onClickArrowBack}
-          iconName="star-outline"
+          onPress={saveFavoriteHouse}
+          iconName={favorite ? 'star' : 'star-outline'}
+          fill={favorite}
           transparent
         />
       </ImageBackground>
