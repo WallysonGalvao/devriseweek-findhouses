@@ -6,13 +6,11 @@ import { PropertiesProps } from '~/services/calls';
 import { HouseListContainer } from './styles';
 
 type HousesListProps = {
-  loading: boolean;
   data: PropertiesProps[];
-  children: React.ReactElement;
+  children?: React.ReactElement;
 };
 
 export const HousesList = ({
-  loading,
   data,
   children,
 }: HousesListProps): JSX.Element => {
@@ -23,6 +21,7 @@ export const HousesList = ({
   const renderItem = ({ item }: { item: PropertiesProps }) => {
     return (
       <HouseCard
+        item={item}
         title={item.address.line}
         description={`${item.address.neighborhood_name} - ${item.address.state}`}
         imageSource={item.photos[0].href}

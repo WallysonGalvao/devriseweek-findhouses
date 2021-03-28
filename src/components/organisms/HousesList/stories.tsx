@@ -1,5 +1,4 @@
 import React from 'react';
-import { text, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 
 import { HousesList } from '.';

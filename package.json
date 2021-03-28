@@ -14,12 +14,20 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
     "axios": "^0.21.1",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-dotenv": "^2.5.3",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.0.1",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^2.18.1",
     "react-native-vector-icons": "^8.1.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "zustand": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
