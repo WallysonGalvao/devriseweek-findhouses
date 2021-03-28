@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { getHousesCall, PropertiesProps } from '~/services/calls';
+import { useHousesStore } from '~/services/stores';
+import { getHousesCall } from '~/services/calls';
 
-import { Title, IconButton, Input, DetailText } from '~/components';
+import { Title, IconButton, Input, Loader } from '~/components';
+
 import { HousesList } from '~/components/organisms/HousesList';
 
 import {
@@ -10,17 +12,15 @@ import {
   TopContainer,
   TitleContainer,
   ContentContainer,
-  LoaderContainer,
-  Loader,
 } from './styles';
 
 export const HomeScreen = (): JSX.Element => {
+  const { housesList, setHousesList } = useHousesStore();
   const [loading, setLoading] = useState(true);
-  const [housesListData, setHousesListData] = useState<PropertiesProps[]>([]);
 
   const callGetHouses = useCallback(async () => {
     const result = await getHousesCall();
-    setHousesListData(result.properties);
+    setHousesList(result.properties);
     setLoading(false);
   }, []);
 
@@ -30,7 +30,7 @@ export const HomeScreen = (): JSX.Element => {
 
   return (
     <ScreenContainer>
-      <HousesList loading={loading} data={housesListData}>
+      <HousesList data={housesList}>
         <ContentContainer>
           <TopContainer>
             <TitleContainer>
@@ -39,12 +39,7 @@ export const HomeScreen = (): JSX.Element => {
             <IconButton iconName="filter" />
           </TopContainer>
           <Input label="Localização" placeholder="Digite o endereço" />
-          {loading && (
-            <LoaderContainer>
-              <Loader size="large" color="white" />
-              <DetailText>Carregando...</DetailText>
-            </LoaderContainer>
-          )}
+          {loading && <Loader />}
         </ContentContainer>
       </HousesList>
     </ScreenContainer>

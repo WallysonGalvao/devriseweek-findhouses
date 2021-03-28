@@ -1,6 +1,22 @@
 import styled, { css } from 'styled-components/native';
 
-export const Title = styled.Text`
+type BaseTextProps = {
+  mt?: number;
+  mb?: number;
+  ml?: number;
+  mr?: number;
+};
+
+export const BaseText = styled.Text<BaseTextProps>`
+  ${({ theme, mt, mb, ml, mr }) => css`
+    margin-top: ${theme.metrics.px(mt || 0)}px;
+    margin-bottom: ${theme.metrics.px(mb || 0)}px;
+    margin-left: ${theme.metrics.px(ml || 0)}px;
+    margin-right: ${theme.metrics.px(mr || 0)}px;
+  `}
+`;
+
+export const Title = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(28)}px;
@@ -8,7 +24,7 @@ export const Title = styled.Text`
   `}
 `;
 
-export const InputLabel = styled.Text`
+export const InputLabel = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(16)}px;
@@ -16,7 +32,7 @@ export const InputLabel = styled.Text`
   `}
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(22)}px;
@@ -26,7 +42,7 @@ export const ButtonText = styled.Text`
 
 // DetailTexts:
 
-export const DetailTitle = styled.Text`
+export const DetailTitle = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(24)}px;
@@ -34,14 +50,14 @@ export const DetailTitle = styled.Text`
   `}
 `;
 
-export const DetailSubTitle = styled.Text`
+export const DetailSubTitle = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(18)}px;
   `}
 `;
 
-export const DetailText = styled.Text`
+export const DetailText = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(14)}px;
@@ -49,7 +65,7 @@ export const DetailText = styled.Text`
   `}
 `;
 
-export const DetailSectionTitle = styled.Text`
+export const DetailSectionTitle = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(20)}px;
@@ -59,7 +75,7 @@ export const DetailSectionTitle = styled.Text`
 
 // CardTexts:
 
-export const CardTitle = styled.Text`
+export const CardTitle = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(14)}px;
@@ -67,7 +83,7 @@ export const CardTitle = styled.Text`
   `}
 `;
 
-export const CardDescription = styled.Text`
+export const CardDescription = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(10)}px;
@@ -75,7 +91,7 @@ export const CardDescription = styled.Text`
   `}
 `;
 
-export const CardHightLightText = styled.Text`
+export const CardHightLightText = styled(BaseText)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     font-size: ${theme.metrics.px(16)}px;
