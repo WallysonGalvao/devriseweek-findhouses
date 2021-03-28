@@ -31,17 +31,32 @@ type ResponseProps = {
   properties: PropertiesProps[];
 };
 
-export const getHousesCall = async (): Promise<ResponseProps> => {
+export type OptionalParamsProps = {
+  sizeMin?: string;
+  sizeMax?: string;
+  priceMin?: string;
+  priceMax?: string;
+  bedsMin?: string;
+  bathsMin?: string;
+};
+
+export const getHousesCall = async (
+  offset: number,
+  optionalParams: OptionalParamsProps,
+): Promise<ResponseProps> => {
   try {
+    const requiredParams = {
+      city: 'Miami',
+      state_code: 'FL',
+      limit: 15,
+      offset,
+      sort: 'relevance',
+    };
+
     const result = await api.get('properties/v2/list-for-rent', {
-      params: {
-        city: 'Miami',
-        state_code: 'FL',
-        limit: 15,
-        offset: 0,
-        sort: 'relevance',
-      },
+      params: { ...requiredParams, ...optionalParams },
     });
+    // console.log(JSON.stringify(result));
     return result.data;
   } catch (error) {
     return error;

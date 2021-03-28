@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { useHousesStore } from '~/services/stores';
-import { getHousesCall } from '~/services/calls';
+import { useHousesHooks } from '~/services/hooks';
 
 import { Title, IconButton, Input, Loader } from '~/components';
 
-import { HousesList } from '~/components/organisms/HousesList';
+import { HousesList, FilterMoal } from '~/components/organisms';
 
 import {
   ScreenContainer,
@@ -15,33 +15,39 @@ import {
 } from './styles';
 
 export const HomeScreen = (): JSX.Element => {
-  const { housesList, setHousesList } = useHousesStore();
-  const [loading, setLoading] = useState(true);
+  const { onGetHouses } = useHousesHooks();
+  const { housesList, loadingHousesList } = useHousesStore();
 
-  const callGetHouses = useCallback(async () => {
-    const result = await getHousesCall();
-    setHousesList(result.properties);
-    setLoading(false);
+  const [filterModalVisible, setFilterModalVisible] = useState(false);
+
+  const toggleFilterModal = useCallback(() => {
+    setFilterModalVisible(prevState => !prevState);
   }, []);
 
   useEffect(() => {
-    callGetHouses();
+    onGetHouses();
   }, []);
 
   return (
     <ScreenContainer>
-      <HousesList data={housesList}>
+      <HousesList
+        data={housesList}
+        loading={filterModalVisible}
+        onEndReached={onGetHouses}>
         <ContentContainer>
           <TopContainer>
             <TitleContainer>
               <Title>Encontre aqui seu imóvel</Title>
             </TitleContainer>
-            <IconButton iconName="filter" />
+            <IconButton iconName="filter" onPress={toggleFilterModal} />
           </TopContainer>
           <Input label="Localização" placeholder="Digite o endereço" />
-          {loading && <Loader />}
+          {loadingHousesList && <Loader />}
         </ContentContainer>
       </HousesList>
+      {filterModalVisible && (
+        <FilterMoal visible={filterModalVisible} onClose={toggleFilterModal} />
+      )}
     </ScreenContainer>
   );
 };
